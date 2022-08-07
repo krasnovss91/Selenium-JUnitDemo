@@ -29,4 +29,24 @@ public class SeleniumWebDriverManagerTests {
         driver.quit();
 
     }
+
+    @Test
+    public void SecondFormTest() throws InterruptedException {
+        WebDriverManager.chromedriver().setup();
+        WebDriver driver = new ChromeDriver();
+
+        driver.get("https://demoqa.com/automation-practice-form");
+        driver.manage().window().maximize();
+        driver.findElement(By.cssSelector("[id='firstName']")).sendKeys("Elena");
+        driver.findElement(By.cssSelector("[id='lastName']")).sendKeys("Nikoforova");
+        driver.findElement(By.cssSelector("[id='userNumber']")).sendKeys("1234567898");
+        driver.findElement(By.cssSelector("[for='gender-radio-2']")).click();
+        driver.findElement(By.cssSelector("[id='submit']")).click();
+
+        Assertions.assertTrue(driver.findElement(By.cssSelector("[id='example-modal-sizes-title-lg']")).isDisplayed());
+
+        Thread.sleep(300);
+
+        driver.quit();
+    }
 }
